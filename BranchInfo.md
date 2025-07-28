@@ -1,3 +1,8 @@
+Master Branch
+Contains the latest stable code.
+
+
+
 Base Structure Branch For Representing C->S->R action
 
 Does not handle exceptions, just a simple structure to represent the action.
