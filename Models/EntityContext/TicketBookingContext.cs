@@ -4,6 +4,12 @@ namespace TicketBooking.Models.EntityContext
 {
     public class TicketBookingContext : DbContext
     {
+ 
+        public TicketBookingContext(DbContextOptions<TicketBookingContext> options)
+       : base(options)
+        {
+            Database.EnsureCreated();  
+        }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Payment> Payments { get; set; }
@@ -17,20 +23,9 @@ namespace TicketBooking.Models.EntityContext
         public DbSet<Theater> Theaters { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public TicketBookingContext()
-        {
-            Database.EnsureCreated();
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-             
-            // Connection string using AttachDbFilename
-            var connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TicketBookingDb;Integrated Security=True;";
-
-            optionsBuilder.UseSqlServer(connectionString);
-        }
+       
+        
 
     }
 }
 
- 

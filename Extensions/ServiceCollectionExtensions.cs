@@ -12,12 +12,17 @@ namespace TicketBooking.Extensions
     {
         public static void AddApplicationServices(this IServiceCollection services)
         {
-            //Register Database Context
-            services.AddDbContext<TicketBookingContext>();
+             
 
             // Add more as needed
             services.AddScoped<IRegionService, RegionService>();
+            services.AddScoped<ITheaterService, TheaterService>();
+            services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IShowService, ShowService>();
             services.AddScoped<IRegionRepository, RegionRepository>();
+            services.AddScoped<ITheaterRepository, TheaterRepository>();
+            services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IShowRepository, ShowRepository>();
         }
     }
 }

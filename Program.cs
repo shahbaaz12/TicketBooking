@@ -1,4 +1,6 @@
 
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using TicketBooking.Extensions;
 using TicketBooking.Models.EntityContext;
 using TicketBooking.Services;
@@ -13,11 +15,18 @@ namespace TicketBooking
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(x => { x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve; });
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //Add DbContext for Entity Framework Core
+            builder.Services.AddDbContext<TicketBookingContext>(
+                options =>
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("TBContext") ??
+                    throw new InvalidOperationException("Connection string 'TbContext' not found.")));
 
             // Extension method to register application services
             builder.Services.AddApplicationServices();
@@ -41,7 +50,7 @@ namespace TicketBooking
 
             app.Run();
         }
-         
+
     }
 }
 

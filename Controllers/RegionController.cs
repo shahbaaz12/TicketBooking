@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using TicketBooking.Constants;
 using TicketBooking.Helpers;
 using TicketBooking.Models;
-using TicketBooking.Models.Dtos;
 using TicketBooking.Models.Dtos.Regions;
 using TicketBooking.Services.Contracts;
 
